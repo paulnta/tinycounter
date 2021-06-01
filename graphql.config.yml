@@ -1,0 +1,24 @@
+overwrite: true
+schema: 'http://localhost:4000/graphql'
+documents: "src/**/*.ts"
+extensions:
+  codegen:
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
+    generates:
+      ./server/graphql/generated/graphql.ts:
+        plugins:
+          - typescript
+          - typescript-resolvers
+        config:
+          mapperTypeSuffix: Model
+          mappers:
+            Space: '@prisma/client#Space'
+            Counter: '@prisma/client#Counter'
+      ./src/generated/graphql.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+          - typescript-react-apollo
+

@@ -1,0 +1,6 @@
+# Ignore artifacts
+build
+dist
+
+# Ignore docker volumes
+data

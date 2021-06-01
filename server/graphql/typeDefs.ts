@@ -1,0 +1,43 @@
+import { gql } from 'apollo-server-express'
+
+export const typeDefs = gql`
+  type Counter {
+    id: String!
+    title: String
+    value: Int!
+  }
+
+  type Space {
+    id: String!
+    title: String
+    counters: [Counter!]!
+  }
+
+  input SpaceInput {
+    title: String
+  }
+
+  input CounterInput {
+    title: String
+    value: Int
+  }
+
+  type Query {
+    space(id: String!): Space
+  }
+
+  type Mutation {
+    createSpace(data: SpaceInput!): Space!
+    updateSpace(id: String!, data: SpaceInput!): Space!
+    deleteSpace(id: String!): Space!
+
+    createCounter(spaceId: String!, data: CounterInput!): Counter!
+    updateCounter(id: String!, data: CounterInput!): Counter!
+    incrementCounter(id: String!, step: Int!): Counter!
+    deleteCounter(id: String!): Counter!
+  }
+
+  type Subscription {
+    spaceUpdated(id: String!): Space
+  }
+`
