@@ -20,14 +20,14 @@ export function CounterModal({ counter, onClose }: CounterModalProps) {
   }
 
   return (
-    <Modal onClickOutside={onClose}>
+    <Modal maxWidth="md" onClickOutside={onClose}>
       <>
         <div className="absolute top-0 left-0 w-full pt-4 px-4 flex items-center">
-          <button onClick={onClose}>
+          <button className="icon-button" onClick={onClose}>
             <MdClose size={24} />
           </button>
           <div className="flex-1" />
-          <button onClick={onDeleteCounter}>
+          <button className="icon-button" onClick={onDeleteCounter}>
             <MdDelete size={24} />
           </button>
         </div>
@@ -64,13 +64,13 @@ export function CounterModal({ counter, onClose }: CounterModalProps) {
             </div>
           </div>
           <button
-            className="grid place-items-center border-t hover:bg-gray-200 border-r focus:outline-none"
+            className="grid place-items-center border-t hover:bg-slate-200 active:bg-slate-300 border-r focus:outline-none"
             onClick={() => incrementCounter(counter, -1)}
           >
             <MdRemove size={24} />
           </button>
           <button
-            className="grid place-items-center border-t hover:bg-gray-200 focus:outline-none"
+            className="grid place-items-center border-t hover:bg-slate-200 active:bg-slate-300 focus:outline-none"
             onClick={(e) => incrementCounter(counter, 1)}
           >
             <MdAdd size={24} />

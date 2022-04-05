@@ -41,7 +41,7 @@ export default function Home() {
         <h2 className="font-bold mb-6">Start by creating a space</h2>
 
         <input
-          className="block w-full py-3 px-4 bg-gray-100 rounded-xl mb-4"
+          className="block w-full py-3 px-4 bg-slate-100 rounded-xl mb-4"
           type="text"
           placeholder={DEFAULT_SPACE_TITLE}
           value={title}

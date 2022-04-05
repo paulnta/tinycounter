@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from 'react'
+import classnames from 'classnames'
 
 type ModalProps = {
-  children?: React.ReactElement
+  children?: React.ReactNode
+  maxWidth?: 'sm' | 'md' | 'lg'
   onClickOutside?: () => void
 }
 
-export function Modal({ children, onClickOutside }: ModalProps) {
+export function Modal(props: ModalProps) {
+  const { children, onClickOutside, maxWidth = 'lg' } = props
   const contentEl = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const listener = (e: MouseEvent) => {
@@ -19,11 +22,15 @@ export function Modal({ children, onClickOutside }: ModalProps) {
 
   return (
     <div className="fixed z-10 inset-0">
-      <div className="absolute h-full w-full inset-0 bg-gray-500 opacity-75"></div>
+      <div className="absolute h-full w-full inset-0 bg-slate-500 opacity-75"></div>
       <div className="absolute top-24 bottom-0 w-full">
         <div
           ref={contentEl}
-          className="relative h-full w-full max-w-screen-lg mx-auto bg-gray-100 rounded-t-3xl"
+          className={classnames('relative h-full w-full mx-auto bg-white rounded-t-3xl', {
+            'max-w-screen-sm': maxWidth === 'sm',
+            'max-w-screen-md': maxWidth === 'md',
+            'max-w-screen-lg': maxWidth === 'lg',
+          })}
         >
           {children}
         </div>
