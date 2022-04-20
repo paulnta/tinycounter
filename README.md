@@ -91,13 +91,29 @@ You'll need to run this command whenever you make changes in the database Schema
 
 #### `yarn codegen:graphql`
 
-This command uses [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate Typescript definitions for GraphQL resolvers and operations. The [typescript-react-apollo](https://www.graphql-code-generator.com/plugins/typescript-react-apollo) plugin will generate reusable hooks to send GraphQL queries.
+This command uses [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate Typescript definitions for:
 
-You'll need to run this command whenever you make changes to the GraphQL Schema or client-side queries to update the generated code.
+- GraphQL resolvers on the server.
+- GraphQL queries made on the client. The [typescript-react-apollo](https://www.graphql-code-generator.com/plugins/typescript-react-apollo) plugin generates reusable React hooks to send GraphQL queries.
+- GraphQL queries made during tests. The [gql-tag-operations-preset](https://www.graphql-code-generator.com/plugins/gql-tag-operations-preset) preset is used to generate typings for inline `gql` usage. So need to import types from anywhere, it's just magic 🪄
+
+You'll need to run this command whenever you make changes to the GraphQL Schema or client-side or test queries to update the generated code.
+
+Alternatively, you can run the command once in watch mode:
+
+```sh
+yarn codegen:graphql --watch
+```
 
 #### `yarn codegen`
 
 Run both `codegen:graphql` and `codegen:prisma`
+
+### `yarn test`
+
+Run tests.
+
+For [integration tests](./server/__tests__/integration.spec.ts) to run correctly, you'll need to start the database container with `yarn db:start`
 
 #### `yarn build`
 

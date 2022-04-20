@@ -18,5 +18,5 @@ model Counter {
   title   String? @db.VarChar(255)
   value   Int     @default(0)
   spaceId String?
-  space   Space?  @relation(fields: [spaceId], references: [id])
+  space   Space?  @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
